@@ -1,0 +1,23 @@
+{
+	"name": "eggbe/client-bridge",
+	"version": "1.0.0",
+	"type": "library",
+	"keywords": ["client", "server", "relations", "library"],
+	"description": "Client part of client-server relations library.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "hacpaka",
+			"email": "hacpaka@eggbe.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"eggbe/helpers": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {
+			"Eggbe\\ClientBridge": "src/"
+		}
+	}
+}
