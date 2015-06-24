@@ -1,3 +1,7 @@
+* 1.1.0
+
+ * [incompatible] changed method: Bridge::delegate
+
 * 1.0.0
 
  * initial version

@@ -1,6 +1,6 @@
 {
 	"name": "eggbe/client-bridge",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"type": "library",
 	"keywords": ["client", "server", "communication", "library"],
 	"description": "Client part of the client-server communications library.",

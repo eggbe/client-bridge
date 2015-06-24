@@ -73,19 +73,9 @@ class Bridge {
 	}
 
 	/**
-	 * @const int
-	 */
-	const DELEGATE_SESSION = 1;
-
-	/**
 	 * @var array
 	 */
 	private $Session = [];
-
-	/**
-	 * @const int
-	 */
-	const DELEGATE_COOKIES = 2;
 
 	/**
 	 * @var array
@@ -93,19 +83,9 @@ class Bridge {
 	private $Cookie = [];
 
 	/**
-	 * @const int
-	 */
-	const DELEGATE_POST = 3;
-
-	/**
 	 * @var array
 	 */
 	private $Post = [];
-
-	/**
-	 * @const int
-	 */
-	const DELEGATE_GET = 4;
 
 	/**
 	 * @var array
@@ -113,36 +93,13 @@ class Bridge {
 	private $Get = [];
 
 	/**
-	 * @param string $from
 	 * @param string $key, ...
 	 * @return ABridge
-	 * @throws \Exception
 	 */
-	public function delegate($from, $key){
-		switch((int)$from){
-			case self::DELEGATE_SESSION:
-				if (session_status() == PHP_SESSION_DISABLED) {
-					throw new \Exception('Can not delegate session values because session is disabled!');
-				}
-				if (session_status() == PHP_SESSION_ACTIVE) {
-					$this->Session = array_merge($this->Session,
-						Arr::only($_SESSION, Arr::simplify(array_slice(func_get_args(), 1))));
-				}
-				break;
-			case self::DELEGATE_COOKIES:
-				$this->Cookie = array_merge($this->Cookie,
-					Arr::only($_COOKIE, Arr::simplify(array_slice(func_get_args(), 1))));
-				break;
-			case self::DELEGATE_POST:
-				$this->Post = array_merge($this->Post,
-					Arr::only($_POST, Arr::simplify(array_slice(func_get_args(), 1))));
-				break;
-			case self::DELEGATE_GET:
-				$this->Get = array_merge($this->Get,
-					Arr::only($_GET, Arr::simplify(array_slice(func_get_args(), 1))));
-				break;
-			default:
-				throw new \Exception('Unknown source type: "' . $from . '"!');
+	public function delegate($key){
+		if (session_status() == PHP_SESSION_ACTIVE) {
+			$this->Session = array_merge($this->Session,
+				Arr::only($_SESSION, Arr::simplify(array_slice(func_get_args(), 1))));
 		}
 		return $this;
 	}
@@ -173,6 +130,8 @@ class Bridge {
 		if (!preg_match('/application\/json/', $Headers['Content-Type'])) {
 			throw new \Exception('Unsupported response type!');
 		}
+
+		_dumpe(preg_replace('/^.*\r\n\r\n/s', null, $response));
 
 		return json_decode(trim(preg_replace('/^.*\r\n\r\n/s', null, $response)), true);
 
