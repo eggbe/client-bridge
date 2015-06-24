@@ -73,67 +73,27 @@ class Bridge {
 	}
 
 	/**
-	 * @var array
-	 */
-	private $Session = [];
-
-	/**
-	 * @var array
-	 */
-	private $Cookie = [];
-
-	/**
-	 * @var array
-	 */
-	private $Post = [];
-
-	/**
-	 * @var array
-	 */
-	private $Get = [];
-
-	/**
-	 * @param string $key, ...
-	 * @return Bridge
-	 */
-	public function delegate($key){
-		if (session_status() == PHP_SESSION_ACTIVE) {
-			$this->Session = array_merge($this->Session,
-				Arr::only($_SESSION, Arr::simplify(func_get_args())));
-		}
-		return $this;
-	}
-
-	/**
 	 * @throws \Exception
 	 * @return array
 	 */
 	public function send() {
 
-		$response = preg_replace('/^HTTP\/[0-9.]+ *[0-9]* [A-Za-z]+(?:\r?\n)+/', null,
-			Curl::post($this->url, Arr::not(array_change_key_case(get_object_vars($this),
-				CASE_LOWER), 'url'), [], Curl::F_RETURN_HEADERS));
+		$Response = json_decode(trim(Curl::post($this->url, Arr::not(array_change_key_case(get_object_vars($this),
+			CASE_LOWER), 'url'))), true);
 
-		if (strlen($response) < 1) {
+		if (is_null($Data)){
 			throw new \Exception('Invalid response length!');
 		}
 
-		$Headers = Arr::unpack(preg_split('/\r\n/', preg_replace('/\r\n\r\n.*$/s', null, $response), -1, PREG_SPLIT_NO_EMPTY), ':');
-		if (count($Headers) < 1) {
-			throw new \Exception('Invalid headers!');
+		if (array_key_exists('error', $Data) && array_key_exists('message', $Data)){
+			throw new \Exception($Data['message']);
 		}
 
-		if (!array_key_exists('Content-Type', $Headers)) {
-			throw new \Exception('Unknown response type!');
+		if (array_key_exists('error', $Data)){
+			throw new \Exception('Unknown error!');
 		}
 
-		if (!preg_match('/application\/json/', $Headers['Content-Type'])) {
-			throw new \Exception('Unsupported response type!');
-		}
-
-		die(preg_replace('/^.*\r\n\r\n/s', null, $response));
-
-		return json_decode(trim(preg_replace('/^.*\r\n\r\n/s', null, $response)), true);
+		return $Response;
 
 	}
 
