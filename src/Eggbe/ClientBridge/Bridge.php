@@ -29,7 +29,7 @@ class Bridge {
 
 	/**
 	 * @param $method
-	 * @return ABridge
+	 * @return Bridge
 	 * @throws \Exception
 	 */
 	public function to($method){
@@ -47,7 +47,7 @@ class Bridge {
 
 	/**
 	 * @param string $layout
-	 * @return ABridge
+	 * @return Bridge
 	 * @throws \Exception
 	 */
 	public function where($layout){
@@ -65,7 +65,7 @@ class Bridge {
 
 	/**
 	 * @param array $Params
-	 * @return ABridge
+	 * @return Bridge
 	 */
 	public function with(array $Params){
 		$this->Params = array_merge($this->Params, array_change_key_case($Params, CASE_LOWER));
@@ -94,12 +94,12 @@ class Bridge {
 
 	/**
 	 * @param string $key, ...
-	 * @return ABridge
+	 * @return Bridge
 	 */
 	public function delegate($key){
 		if (session_status() == PHP_SESSION_ACTIVE) {
 			$this->Session = array_merge($this->Session,
-				Arr::only($_SESSION, Arr::simplify(array_slice(func_get_args(), 1))));
+				Arr::only($_SESSION, Arr::simplify(func_get_args())));
 		}
 		return $this;
 	}
@@ -130,6 +130,8 @@ class Bridge {
 		if (!preg_match('/application\/json/', $Headers['Content-Type'])) {
 			throw new \Exception('Unsupported response type!');
 		}
+
+		die(preg_replace('/^.*\r\n\r\n/s', null, $response));
 
 		return json_decode(trim(preg_replace('/^.*\r\n\r\n/s', null, $response)), true);
 
