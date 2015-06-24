@@ -131,8 +131,6 @@ class Bridge {
 			throw new \Exception('Unsupported response type!');
 		}
 
-		_dumpe(preg_replace('/^.*\r\n\r\n/s', null, $response));
-
 		return json_decode(trim(preg_replace('/^.*\r\n\r\n/s', null, $response)), true);
 
 	}
