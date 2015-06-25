@@ -1,11 +1,15 @@
-* 1.2.0
+* 1.2.1 (2015-06-26)
 
- * [incompatible] removed method: Bridge::delegate
+  * Method Bridge::__construct is not final now!
 
-* 1.1.0
+* 1.2.0 (2015-06-25)
 
- * [incompatible] changed method: Bridge::delegate
+  * [incompatible] removed method: Bridge::delegate
+
+* 1.1.0 (2015-06-24)
+
+  * [incompatible] changed method: Bridge::delegate
 
 * 1.0.0
 
- * initial version
+  * initial version

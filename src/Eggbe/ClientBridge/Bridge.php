@@ -15,7 +15,7 @@ class Bridge {
 	 * @param string $url
 	 * @throws \Exception
 	 */
-	public final function __construct($url) {
+	public function __construct($url) {
 		if (!filter_var(($url = trim($url)), FILTER_VALIDATE_URL)) {
 			throw new \Exception('Invalid url format!');
 		}
