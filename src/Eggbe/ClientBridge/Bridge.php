@@ -77,7 +77,6 @@ class Bridge {
 	 * @return array
 	 */
 	public function send() {
-
 		$Response = json_decode(trim(Curl::post($this->url, Arr::not(array_change_key_case(get_object_vars($this),
 			CASE_LOWER), 'url'))), true);
 
@@ -85,20 +84,20 @@ class Bridge {
 			throw new \Exception('Invalid response length!');
 		}
 
-		if (!Arr::has($Response, 'error', 'data')){
+		if (!Arr::has($Response, 'error')){
 			throw new \Exception('Invalid response format!');
 		}
 
 		if ($Response['error']){
-			if (Arr::has($Response, 'message')){
-				throw new \Exception($Response['message']);
-			}else{
-				throw new \Exception('Unknown error!');
-			}
+			throw new \Exception(Arr::has($Response, 'message')
+				? $Response['message'] : 'Unknown error!');
+		}
+
+		if (!Arr::has($Response, 'data')) {
+			throw new \Exception('Invalid response format!');
 		}
 
 		return $Response['data'];
-
 	}
 
 }
