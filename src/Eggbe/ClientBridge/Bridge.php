@@ -43,18 +43,18 @@ class Bridge {
 	/**
 	 * @var string
 	 */
-	private $layout = null;
+	private $namespace = null;
 
 	/**
-	 * @param string $layout
+	 * @param string $namespace
 	 * @return Bridge
 	 * @throws \Exception
 	 */
-	public function where($layout){
-		if (!preg_match('/[A-Za-z]+[A-Za-z0-9-]+/', ($layout = trim($layout)))){
-			throw new \Exception('Invalid layout format "' . $layout . '"!');
+	public function where($namespace){
+		if (!preg_match('/[A-Za-z]+[A-Za-z0-9-]+/', ($namespace = trim($namespace)))){
+			throw new \Exception('Invalid namespace format "' . $namespace . '"!');
 		}
-		$this->layout = strtolower($layout);
+		$this->namespace = strtolower($namespace);
 		return $this;
 	}
 
@@ -85,19 +85,19 @@ class Bridge {
 			throw new \Exception('Invalid response length!');
 		}
 
-		if (!isset($Response['error'])){
+		if (!Arr::has($Response, 'error', 'data')){
 			throw new \Exception('Invalid response format!');
 		}
 
-		if ($Response['error'] && isset($Response['message'])){
-			throw new \Exception($Response['message']);
-		}
-
 		if ($Response['error']){
-			throw new \Exception('Unknown error!');
+			if (Arr::has($Response, 'message')){
+				throw new \Exception($Response['message']);
+			}else{
+				throw new \Exception('Unknown error!');
+			}
 		}
 
-		return $Response;
+		return $Response['data'];
 
 	}
 
