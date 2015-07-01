@@ -1,3 +1,0 @@
-kdewebdev-kfilereplace
-kdewebdev-kimagemapeditor
-kdewebdev-kommander
