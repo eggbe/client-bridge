@@ -19,6 +19,7 @@ class Bridge {
 		if (!filter_var(($url = trim($url)), FILTER_VALIDATE_URL)) {
 			throw new \Exception('Invalid url format!');
 		}
+
 		$this->url = $url;
 	}
 
@@ -37,6 +38,7 @@ class Bridge {
 			throw new \Exception('Invalid method format "' . $method . '"!');
 		}
 		$this->method = strtolower($method);
+
 		return $this;
 	}
 
@@ -55,6 +57,7 @@ class Bridge {
 			throw new \Exception('Invalid namespace format "' . $namespace . '"!');
 		}
 		$this->namespace = strtolower($namespace);
+
 		return $this;
 	}
 
@@ -68,24 +71,25 @@ class Bridge {
 	 * @return Bridge
 	 */
 	public function with(array $Params){
-		$this->Params = array_merge($this->Params, array_change_key_case($Params, CASE_LOWER));
+		$this->Params = array_merge($this->Params,
+			array_change_key_case($Params, CASE_LOWER));
+
 		return $this;
 	}
 
 	/**
 	 * @var array
 	 */
-	private $Session = [];
+	private $Attachments = [];
 
 	/**
-	 * @param $keys
+	 * @param array $Attachments
 	 * @return Bridge
 	 */
-	public function attach($keys){
-		if (session_status() == PHP_SESSION_ACTIVE){
-			$this->Session = array_merge($this->Session,
-				Arr::only($_SESSION, Arr::simplify(func_get_args())));
-		}
+	public function attach(array $Attachments){
+		$this->Attachments = array_merge($this->Attachments,
+			array_change_key_case($Attachments, CASE_LOWER));
+
 		return $this;
 	}
 
