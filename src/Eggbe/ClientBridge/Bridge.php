@@ -73,6 +73,23 @@ class Bridge {
 	}
 
 	/**
+	 * @var array
+	 */
+	private $Session = [];
+
+	/**
+	 * @param $keys
+	 * @return Bridge
+	 */
+	public function attach($keys){
+		if (session_status() == PHP_SESSION_ACTIVE){
+			$this->Session = array_merge($this->Session,
+				Arr::only($_SESSION, Arr::simplify(func_get_args())));
+		}
+		return $this;
+	}
+
+	/**
 	 * @throws \Exception
 	 * @return array
 	 */
