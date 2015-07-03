@@ -1,8 +1,8 @@
 <?php
 namespace Eggbe\ClientBridge;
 
-use \Eggbe\Helpers\Arr;
-use \Eggbe\Helpers\Curl;
+use \Eggbe\Helper\Arr;
+use \Eggbe\Helper\Curl;
 
 class Bridge {
 
