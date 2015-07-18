@@ -2,7 +2,7 @@
 	"name": "eggbe/client-bridge",
 	"version": "1.4.0",
 	"type": "library",
-	"keywords": ["client", "server", "communication"],
+	"keywords": ["client", "client-server", "communication"],
 	"description": "Client part of the client-server communications library.",
 	"license": "MIT",
 	"authors": [
