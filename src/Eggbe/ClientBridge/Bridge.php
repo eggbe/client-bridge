@@ -98,7 +98,7 @@ class Bridge {
 	 * @return array
 	 */
 	public function send() {
-		$Response = json_decode(trim(Curl::post($this->url, Arr::not(array_change_key_case(get_object_vars($this),
+		$Response = json_decode(trim(Curl::post($this->url, Arr::except(array_change_key_case(get_object_vars($this),
 			CASE_LOWER), 'url'))), true);
 
 		if (is_null($Response)){
