@@ -1,8 +1,8 @@
 {
 	"name": "eggbe/client-bridge",
-	"version": "1.4.0",
+	"version": "2.0.0",
 	"type": "library",
-	"keywords": ["client", "client-server", "communication"],
+	"keywords": ["client", "client-server", "communication", "high-performance"],
 	"description": "Client part of the client-server communications library.",
 	"license": "MIT",
 	"authors": [
@@ -16,8 +16,8 @@
 		"eggbe/helpers": "dev-master"
 	},
 	"autoload": {
-		"psr-0": {
-			"Eggbe\\ClientBridge": "src/"
+		"psr-4": {
+			"Eggbe\\ClientBridge\\": "src/"
 		}
 	}
 }
