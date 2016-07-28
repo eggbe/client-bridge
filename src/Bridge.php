@@ -13,15 +13,35 @@ class Bridge {
 	private $url = null;
 
 	/**
+	 * @const
+	 */
+	const RM_POST = 'post';
+
+	/**
+	 * @const
+	 */
+	const RM_GET = 'get';
+
+	/**
+	 * @var null
+	 */
+	private $method = null;
+
+	/**
 	 * @param string $url
+	 * @param string $method
 	 * @throws \Exception
 	 */
-	public function __construct($url) {
+	public function __construct($url, $method = self::RM_GET) {
 		if (!filter_var($url = strtolower(trim($url)), FILTER_VALIDATE_URL)) {
 			throw new \Exception('Invalid url "' . $url . '"!');
 		}
-
 		$this->url = $url;
+
+		if (!in_array($method = strtolower(trim($method)), [self::RM_GET, self::RM_POST])){
+			throw new \Exception('Invalid method "' . $method . '"!');
+		}
+		$this->method = $method;
 	}
 
 	/**
@@ -58,9 +78,8 @@ class Bridge {
 	 * @return string
 	 */
 	public function send() {
-		return Curl::post($this->url,
-			array_filter(array_change_key_case($this->Fields,
-				CASE_LOWER)));
+		return forward_static_call_array([Curl::class, $this->method], [$this->url,
+			array_filter(array_change_key_case($this->Fields, CASE_LOWER))]);
 	}
 
 }
