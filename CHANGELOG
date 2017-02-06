@@ -1,7 +1,8 @@
 * 2.0.0 (2016-07-28)
 
+  * [incompatible] migrated to php >= 7.0.0
+  * [incompatible] refactoring
   * Autoload method was changed to psr-4
-  * All code was totally refactored.
 
 
 * 1.4.0 (2015-07-02)

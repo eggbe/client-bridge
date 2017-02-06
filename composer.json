@@ -2,7 +2,7 @@
 	"name": "eggbe/client-bridge",
 	"version": "2.0.0",
 	"type": "library",
-	"keywords": ["client", "client-server", "communication", "high-performance"],
+	"keywords": ["client", "client-to-server", "server-to-server", "communication", "high-performance", "lightweight"],
 	"description": "Client part of the client-server communications library.",
 	"license": "MIT",
 	"authors": [
@@ -12,7 +12,7 @@
 		}
 	],
 	"require": {
-		"php": ">=5.5.0",
+		"php": ">=7.0.0",
 		"eggbe/helpers": "dev-master"
 	},
 	"autoload": {
