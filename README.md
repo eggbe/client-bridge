@@ -19,7 +19,7 @@ composer require eggbe/client-bridge
 ```
 
 
-Step 2: Create and configure an instance of the object anywhere in your code:
+Step 2: Create and configure an instance anywhere in your code:
 
 ```php
 $Bridge = new \Eggbe\ClientBridge\Bridge([
