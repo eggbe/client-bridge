@@ -3,7 +3,8 @@ namespace Eggbe\ClientBridge;
 
 use \Eggbe\Helper\Arr;
 use \Eggbe\Helper\Curl;
-use \Eggbe\Reglib\Reglib;
+
+use \Able\Reglib\Reglib;
 
 class Bridge {
 
