@@ -1,6 +1,6 @@
 {
 	"name": "eggbe/client-bridge",
-	"version": "2.0.0",
+	"version": "2.1",
 	"type": "library",
 	"keywords": ["client", "client-to-server", "server-to-server", "communication", "high-performance", "lightweight"],
 	"description": "Client part of the client-server communications library.",
@@ -12,8 +12,9 @@
 		}
 	],
 	"require": {
-		"php": ">=7.0.0",
-		"eggbe/helpers": "dev-master"
+		"php": ">=7.2.0",
+		"eggbe/helpers": "dev-master",
+		"able/reglib": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {

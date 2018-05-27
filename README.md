@@ -5,7 +5,7 @@ This is the client part of the lightweight and high-performance library that imp
 ## Requirements
 * PHP >= 7.0.0
 * [Eggbe/Helpers](https://github.com/eggbe/helpers)
-* [Eggbe/Reglib](https://github.com/eggbe/reglib)
+* [Able/Reglib](https://github.com/phpable/reglib)
 
 
 ## Install
