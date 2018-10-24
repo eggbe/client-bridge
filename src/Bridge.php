@@ -1,8 +1,8 @@
 <?php
 namespace Eggbe\ClientBridge;
 
-use \Eggbe\Helper\Arr;
-use \Eggbe\Helper\Curl;
+use \Able\Helpers\Arr;
+use \Able\Helpers\Curl;
 
 use \Able\Reglib\Reglib;
 
