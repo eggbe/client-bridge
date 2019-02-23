@@ -47,13 +47,5 @@ $Bridge->withCustomParameterName('custom-parameter-value')->send();
 Unfortunately in now this library is only support the HTTP/HTTPS protocols but we have plans to extend this part of the functionality. We will keep you in touch!
 
 
-## Authors
-Made with love at [Eggbe](http://eggbe.com).
-
-
-## Feedback 
-We always welcome your feedback at [github@eggbe.com](mailto:github@eggbe.com).
-
-
 ## License
 This package is released under the [MIT license](https://github.com/eggbe/client-bridge/blob/master/LICENSE).
