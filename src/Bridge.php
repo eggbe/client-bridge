@@ -4,7 +4,7 @@ namespace Eggbe\ClientBridge;
 use \Able\Helpers\Arr;
 use \Able\Helpers\Curl;
 
-use \Able\Reglib\Reglib;
+use \Able\Reglib\Regex;
 
 class Bridge {
 
@@ -68,7 +68,7 @@ class Bridge {
 	 * @throws \Exception
 	 */
 	public function __call($method, array $Args = []) {
-		if (!preg_match('/^with(' . Reglib::VAR . ')$/', $method, $Matches)){
+		if (!preg_match('/^with(' . Regex::RE_VARIABLE . ')$/', $method, $Matches)){
 			throw new \Exception('Call to undefined method "' . get_class($this) . '::' . $method . '()"!');
 		}
 
